@@ -10,9 +10,9 @@
 	<br />
       </form>
 
-	<% if @searchapps.empty? %>
+	<%# if @searchapps.any? %>
           <span> There were no results for the query </span>
-	<% else %>
+	<%# else %>
 	<% @searchapps.each do |searchapp| %>
 	 <h5><%=  searchapp.file_name %></h5>
        	   <p><%= searchapp.content %></p>
@@ -27,7 +27,7 @@
     <hr class="label-underline"></hr>
      <% end %>
   <% end %>
-<% end %>
+<%# end %>
 
 <br />
 <br />
