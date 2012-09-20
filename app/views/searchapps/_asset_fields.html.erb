@@ -1,10 +1,10 @@
 <fieldset>
-<ul>
-<p>
-<%= f.file_field :asset %><br />
+<div class="control-group">
+<%= f.file_field :asset %>
  <%= f.hidden_field :_destroy %>
- <%#= f.label :_destroy, "Remove" %>
-  <%= link_to "X", '#', class: "remove_fields" %>
-</p></ul>
+ 
+<%= link_to( raw("<i class=\"icon-remove icon-white\"></i>"),'#',class: "remove_fields"  ) %>
+</div>
+ 
 </fieldset>
 

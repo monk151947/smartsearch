@@ -3,7 +3,7 @@ class SearchappsController < ApplicationController
 
   def index
     @searchapps = Searchapp.text_search params[:search]
-
+    @search_words = params[:search] ? params[:search].split(/\W/) : ''
    respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @searchapps }

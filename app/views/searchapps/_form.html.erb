@@ -1,36 +1,41 @@
-<%= form_for(@searchapp) do |f| %>
+<%= form_for @searchapp  do |f| %>
   <% if @searchapp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@searchapp.errors.count, "error") %> prohibited this searchapp from being saved:</h2>
 
       <ul>
-      <% @searchapp.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @searchapp.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :file_name %><br />
-    <%= f.text_field :file_name %>
+ <div class="control-group">
+    <%= f.label :file_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :file_name, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+   
+ <div class="control-group">
+    <%= f.label :content, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, :class => 'text_area' , :size => '5x5' %>
+    </div>
   </div>
+  
 
-<%= f.fields_for :assets do |asset_fields| %>
-<%= render 'asset_fields', f: asset_fields %>
-<%#= asset_fields.file_field :asset %>
+  <%= f.fields_for :assets do |asset_fields| %>
+    <%= render 'asset_fields', f: asset_fields %>
+    <%#= asset_fields.file_field :asset %>
 
-<% end %>
- <%= link_to_add_fields "Add files", f, :assets %>
-<br />
-<br />
-  <div>
+  <% end %>
+  <%= link_to_add_fields "Add files", f, :assets %>
+ 
 
-    <%= button_to 'Submit', class: "btn btn-primary", method: :post %>
-  </div>
-<% end %>
+<div class="form-actions">
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+</div>
+  <% end %>
 

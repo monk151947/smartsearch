@@ -7,28 +7,28 @@ class Searchapp < ActiveRecord::Base
   after_create :doc_text
 
 
- include PgSearch
+  include PgSearch
   pg_search_scope :search, against: [:file_name, :content],
     using: {tsearch: {dictionary: "english"}},
     associated_against: { assets: [:content]},
     ignoring: :accents
 
-# def self.text_search(query)
-#    if query.present?
-#      # search(query)
-#      rank = <<-RANK
-#ts_rank(to_tsvector(file_name), plainto_tsquery(#{sanitize(query)})) 
+  # def self.text_search(query)
+  #    if query.present?
+  #      # search(query)
+  #      rank = <<-RANK
+  #ts_rank(to_tsvector(file_name), plainto_tsquery(#{sanitize(query)}))
 
-#RANK
-#      where("to_tsvector('english', file_name) @@ :q or to_tsvector('english', content) @@ :q", q: query).order("#{rank} desc")
-#    else
-#      scoped
-#    end
-#  end
+  #RANK
+  #      where("to_tsvector('english', file_name) @@ :q or to_tsvector('english', content) @@ :q", q: query).order("#{rank} desc")
+  #    else
+  #      scoped
+  #    end
+  #  end
 
-def self.text_search(query)
+  def self.text_search(query)
     if query.present?
-     search(query)
+      search(query)
     else
       scoped
     end
@@ -37,11 +37,11 @@ def self.text_search(query)
 
   def doc_text
     self.assets.each do |asset|
-    yomu = Yomu.new  "#{asset.asset.path}"
-    text = yomu.text
-    asset.content = text
-    asset.save
-   end
+      yomu = Yomu.new  "#{asset.asset.path}"
+      text = yomu.text
+      asset.content = text
+      asset.save
+    end
   end
 end
 
