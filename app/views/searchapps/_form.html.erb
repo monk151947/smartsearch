@@ -17,22 +17,22 @@
       <%= f.text_field :file_name, :class => 'text_field' %>
     </div>
   </div>
-   
+
  <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :content, :class => 'text_area' , :size => '5x5' %>
     </div>
   </div>
-  
+
 
   <%= f.fields_for :assets do |asset_fields| %>
     <%= render 'asset_fields', f: asset_fields %>
     <%#= asset_fields.file_field :asset %>
 
   <% end %>
-  <%= link_to_add_fields "Add files", f, :assets %>
- 
+  <%= link_to_add_fields (raw('<i class="icon-plus " ></i> add files')), f, :assets %>
+
 
 <div class="form-actions">
   <%= f.submit nil, :class => 'btn btn-primary' %>
