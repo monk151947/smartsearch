@@ -2,7 +2,6 @@
   <% if @searchapp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@searchapp.errors.count, "error") %> prohibited this searchapp from being saved:</h2>
-
       <ul>
         <% @searchapp.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -10,15 +9,13 @@
       </ul>
     </div>
   <% end %>
-
- <div class="control-group">
+  <div class="control-group">
     <%= f.label :file_name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :file_name, :class => 'text_field' %>
     </div>
   </div>
-   
- <div class="control-group">
+  <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :content, :class => 'text_area' , :size => '5x5' %>
@@ -28,13 +25,12 @@
     <%= render 'asset_fields', f: asset_fields %>
   <% end %>
   <%= link_to_add_fields (raw('<i class="icon-plus-sign " ></i> Add files')), f, :assets %>
- 
-
-<div class="form-actions">
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to(searchapps_path, :class => 'btn btn') do %>
+  <%= link_to_add_fields (raw('<i class="icon-plus " ></i> add files')), f, :assets %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to(searchapps_path, :class => 'btn btn') do %>
       Back <i class=" icon-chevron-left icon-white"></i>
     <% end %>
-</div>
-  <% end %>
+  </div>
+<% end %>
 
