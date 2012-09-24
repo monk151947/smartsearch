@@ -25,7 +25,6 @@
     <%= render 'asset_fields', f: asset_fields %>
   <% end %>
   <%= link_to_add_fields (raw('<i class="icon-plus-sign " ></i> Add files')), f, :assets %>
-  <%= link_to_add_fields (raw('<i class="icon-plus " ></i> add files')), f, :assets %>
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to(searchapps_path, :class => 'btn btn') do %>
