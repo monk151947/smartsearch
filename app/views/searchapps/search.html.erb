@@ -1,22 +1,20 @@
-
-
-<h2><%= link_to 'Upload', new_searchapp_path %></h2>
-
-
-
-
-
-
-
-
-
-<DIV ALIGN=CENTER>
+<div class="hero-unit">
+  <div align=center>
+  <h2>Smart Search </h2>
+    <p>
+  <form class="form-search">
  <%= form_tag searchapps_path, :method => 'get' do %>
   <p>
-    <%= text_field_tag :search, params[:search], :size => "75" %>
-    <%= submit_tag "Search" %>
+    <%= text_field_tag :search, params[:search],:class =>"span4 search-query" %>
+    <%= submit_tag "Search" , :class => "btn btn-primary"%>
   </p>
 <% end %>
-</DIV>
-<br />
+  </form>
+ </p>
+  </div>
+   
+ 
+</div>
+
+
 

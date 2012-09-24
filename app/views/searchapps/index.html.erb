@@ -1,37 +1,38 @@
 
-<h2><%= link_to 'Upload', new_searchapp_path %></h2>
-
-
-<form class="well form-search">
-  <%= form_tag searchapps_path, :method => 'get' do %>
-    <%= text_field_tag :search, params[:search], class: "input-medium search-query" %>
-      <button> <%= button_to 'Search', class: "btn btn-primary", :method => :get  %></button>
+<div class="form-actions">
+  <div align=center>
+    <form class="form-search">
+      <%= form_tag searchapps_path, :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search],:class =>"span4 search-query" %>
+          <%= submit_tag "Search" , :class => "btn  btn-primary"%>
+        </p>
       <% end %>
-      <br />
     </form>
-
-    <% if @searchapps.empty? %>
-      <span> There were no results for the query </span>
-    <% else %>
-      <% @searchapps.each do |searchapp| %>
-        <h5><%=  searchapp.file_name %></h5>
-        <p><%= searchapp.content %></p>
-        <% searchapp.assets.each do |asset| %>
-          <p><%= link_to  File.basename(asset.asset_file_name),
-              asset.asset.url , :target => '_blank' %>
-            <small> <%= number_to_human_size(asset.asset.size) %></small></p>
-          <li>
-            <%= highlight(truncate(sanitize(asset.content, :tags => %w(br a)), :length => 300), @search_words) %>
-          </li>
-          <%= link_to t('destroy'),
-                      searchapp_path(searchapp),
-                      :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-mini btn-danger' %>
-          <hr class="label-underline"></hr>
-        <% end %>
-      <% end %>
+  </div>
+</div>
+<% if @searchapps.empty? %>
+  <span> There were no results for the query </span>
+<% else %>
+  <% @searchapps.each do |searchapp| %>
+    <h5><%=  searchapp.file_name %></h5>
+    <p><%= searchapp.content %></p>
+    <% searchapp.assets.each do |asset| %>
+      <p><%= link_to  File.basename(asset.asset_file_name),
+          asset.asset.url , :target => '_blank' %>
+        <small> <%= number_to_human_size(asset.asset.size) %></small></p>
+      <li>
+        <%= highlight(truncate(sanitize(asset.content, :tags => %w(br a)), :length => 300), @search_words) %>
+      </li>
+      <%= link_to t('destroy'),
+        searchapp_path(searchapp),
+        :method => :delete,
+        :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+        :class => 'btn btn-mini btn-danger' %>
+      <hr class="label-underline"></hr>
     <% end %>
+  <% end %>
+<% end %>
 
-    <%#= will_paginate(@searchapps)%>
+<%#= will_paginate(@searchapps)%>
 
